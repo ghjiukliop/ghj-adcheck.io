@@ -1,0 +1,381 @@
+header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+  /* dash board */ 
+  .dash_cover{
+    color: white;
+  }
+  .drop_down ul {
+    display: none;
+    background-color: #f0f0f0;
+    border-radius: 10px;
+    padding: 10px;
+    max-height: 200px; /* set a maximum height for the list */
+    overflow-y: auto; /* add a vertical scroll bar if the list is too long */
+  }
+  
+  .drop_down li:last-child {
+    border-bottom: none; /* remove border from last li element */
+  }
+  .show_on_off{
+    padding: 30px;
+    background-color: #505050;
+    margin-right: 60px;
+    border: 3px solid #000; /* black border */
+    border-radius: 10px; /* rounded corners */
+  }
+  .on_off_acc {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 3px solid #000; /* black border */
+    border-radius: 10px; /* rounded corners */
+    padding: 10px; /* add padding */
+  }
+  
+  
+  .on_off_acc h3 {
+    margin-right: 15px; /* reduce margin for closer spacing */
+    margin-top: 70p; /* remove top margin */
+    margin-bottom: 0; /* remove bottom margin */
+    
+  }
+  
+  .drop_down {
+    position: relative;
+  }
+  
+  .drop_down ul {
+    position: absolute;
+    background-color: #f9f9f9;
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    z-index: 1;
+    list-style-type: none;
+    margin: 0;
+    min-width: 160px;
+  }
+  
+  .drop_down ul li {
+    padding: 8px 16px;
+    cursor: pointer;
+  }
+  
+  .drop_down button {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    cursor: pointer;
+    margin-left: -10px; /* adjust left margin */
+    margin-right: 20px;
+  }
+  
+  .drop_down button:hover {
+    background-color: #3e8e41;
+  }
+  
+  .dashboard {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+  }
+  
+  .dashboard h3 {
+    margin-left: 30px; /* reduce left margin for closer spacing */
+    margin-right: 30px; /* add right margin for spacing */
+  }
+  
+  .dashboard h3:not(:last-child) {
+    margin-right: 30px; /* Add spacing between elements */
+  }
+  
+  .dashboard h3 span {
+    font-weight: bold;
+  }
+  
+  .cover_db {
+    border: 3px solid #000; /* black border */
+    border-radius: 10px; /* rounded corners */
+    padding: 10px; /* add padding */
+    margin-right: 60px; /* add margin-right for spacing */
+   
+    background-color: #505050;
+    text-align: center;
+  }
+  
+  /*end */
+  /* show the ul when the button clicked */
+  .drop_down button:focus + ul {
+    display: block; /* show the ul when the button is clicked */
+  }
+
+  /* Global styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #242424;
+  }
+  
+  /* Header styles */
+  .header {
+    background-color: #f0f0f0;
+    padding: 20px;
+    text-align: center;
+  }
+  
+  /* Search bar styles */
+  .search-bar {
+    margin: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .search-bar #search {
+    width: 50%;body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    
+    header {
+      background-color: #f0f0f0;
+      padding: 10px 20px;
+    }
+    
+    .on_off_acc {
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .drop_down {
+      position: relative;
+      display: inline-block;
+    }
+    
+    .drop_down ul {
+      position: absolute;
+      background-color: #f9f9f9;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      padding: 10px;
+      z-index: 1;
+      list-style-type: none;
+      margin: 0;
+      min-width: 160px;
+    }
+    
+    .drop_down ul li {
+      padding: 8px 16px;
+      cursor: pointer;
+    }
+    
+    .drop_down button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+    
+    .drop_down button:hover {
+      background-color: #3e8e41;
+    }
+    
+    .table_acc {
+      margin-top: 20px;
+    }
+    
+    .table_acc table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    
+    .table_acc th, .table_acc td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: center;
+    }
+    
+    .table_acc th {
+      background-color: #f2f2f2;
+    }
+    
+    .table_acc tbody tr:nth-child(even) {
+      background-color: #f2f2f2;
+    }
+    
+    .table_acc tbody tr:hover {
+      background-color: #ddd;
+    }
+    
+    .add_Acc {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-between;
+    }
+    
+    .popup_btn {
+      margin-right: 10px;
+    }
+    
+    .popup {
+      border: 1px solid #ccc;
+      padding: 20px;
+      background-color: #f9f9f9;
+    }
+    
+    .popup form {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .popup label {
+      margin-bottom: 10px;
+    }
+    
+    .popup input {
+      padding: 8px;
+      margin-bottom: 10px;
+    }
+    
+    .popup button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 10px;
+      cursor: pointer;
+    }
+    
+    .popup button:hover {
+      background-color: #3e8e41;
+    }
+    
+    .dashboard {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background-color: #f0f0f0;
+      border-top: 1px solid #ccc;
+    }
+    
+    .dashboard h3 {
+      margin: 0;
+      font-size: 18px;
+    }
+    
+    .dashboard h3 span {
+      font-weight: bold;
+    }
+    
+    .search-bar {
+      margin-bottom: 20px;
+    }
+    
+    padding: 10px;
+    font-size: 16px;
+  }
+  
+  .search-bar #search-btn {
+    background-color: #4CAF50;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  /* Table styles */
+  #account-table {
+    width: 100%;
+    border-collapse: collapse;
+    height: 300px;
+  }
+  
+  #account-table th, #account-table td {
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: left;
+  }
+  
+  #account-table th {
+    background-color: #f0f0f0;
+  }
+
+
+  /*pop up */
+/*popup button */
+  .popup_btn button {
+    cursor: pointer;
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    border-radius: 50px;
+    background-color: #4CAF50;
+    width: 50px;
+    height: 50px;
+    font-size: 24px;
+    color: white;
+  }
+
+  .popup {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: green;
+    padding: 20px;
+    padding-left: 100px;
+    padding-right: 100px;
+ border-radius: 10px;
+    display: none; 
+  }
+
+  /* Style the button to make it look like a toggle button */
+
+  /* Add some basic styling to the form fields */
+  .popup label {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .popup input[type="text"], .popup input[type="password"], .popup input[type="url"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+  }
+
+/*banner*/
+.banner{
+  color: white;
+}
+
+/* Total Gems in purple */
+#gem-total {
+  color: purple;
+}
+
+/* Total Gold in gold color */
+#gold-total {
+  color: gold;
+}
+
+/* Total Traits in dark pink */
+#trait-total {
+  color: rgb(204, 37, 65);
+}

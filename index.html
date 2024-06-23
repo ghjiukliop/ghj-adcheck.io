@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="/index.css">
+</head>
+<body>
+    <header>
+        <div class="dash_cover">
+            <div class="on_off_acc">
+                <div class="show_on_off">
+                    <h3>Total acc:20</h3>
+                    <h3>Online: 0/20</h3>
+                    <div class="drop_down">
+                        <button id="dropdown-toggle">Drop</button>
+                        <ul id="dropdown-list" style="color: black;">
+                            <li>offline acc</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="dashboard">
+                    <div class="cover_db">
+                        <h3>Total Gems: <span id="gem-total">0</span></h3>
+                    </div>
+                    <div class="cover_db">
+                        <h3>Total Traits: <span id="trait-total">0</span></h3>
+                    </div>
+                    <div class="cover_db">
+                        <h3>Total Gold: <span id="gold-total">0</span></h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!--search bar-->
+    <div class="banner">
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search for account username">
+        </div>
+        
+        <!-- table-->
+        <div class="table_acc">
+            <div style="height: 500px; overflow-y: scroll;">
+                <table id="account-table">
+                    <thead>
+                        <tr style="color: black;">
+                            <th>NUMBER</th>
+                            <th>ACC name</th>
+                            <th>Status</th>
+                            <th>Level</th>
+                            <th>Gems<img src="/asset/img/gems.webp" alt="A description of the image" width="25" height="25" title="Additional information about the image"></th>
+                            <th>Trait Crystal<img src="/asset/img/reroll.webp" alt="A description of the image" width="25" height="25" title="Additional information about the image"></th>
+                            <th>Gold<img src="/asset/img/gold.webp" alt="A description of the image" width="25" height="25" title="Additional information about the image"></th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="account-table-body">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="add_Acc">
+            <div class="popup_btn">
+                <button id="toggle-btn">+</button>
+            </div>
+            <div class="popup" style="display: none;">
+                <form id="account-form">
+                    <label for="username">Username:</label>
+                    <input type="text" id="username" name="username" required><br><br>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" name="password" required><br><br>
+                    <input type="url" id="website" name="website" placeholder="add a link in here and connect it to roblox script" readonly>
+                    <button type="submit">Add Account</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <script src="/index.js"></script>
+</body>
+</html>
