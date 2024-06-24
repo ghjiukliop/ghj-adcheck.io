@@ -44,7 +44,22 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = `https://example.com/connect?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
     document.getElementById('website').value = url;
 
-    // Cập nhật bảng
+    // Add new account to the table
+    addAccountToTable(username, 'Offline', 1, 0, 0, 0);
+    updateDropdownList();
+
+    totalAccounts++;
+    totalAcc.innerText = `Total acc: ${totalAccounts}`;
+    updateOnlineCount();
+
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('website').value = '';
+
+    popup.style.display = 'none';
+  });
+
+  function addAccountToTable(username, status, level, gems, traits, gold) {
     const newRow = tableBody.insertRow();
     const cell1 = newRow.insertCell(0);
     const cell2 = newRow.insertCell(1);
@@ -57,11 +72,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
     cell1.innerText = tableBody.rows.length + 1;
     cell2.innerText = username;
-    cell3.innerText = 'Offline';
-    cell4.innerText = '1 (0/1000)';
-    cell5.innerText = '0';
-    cell6.innerText = '0';
-    cell7.innerText = '0';
+    cell3.innerText = status;
+    cell4.innerText = `${level} (0/1000)`;
+    cell5.innerText = gems;
+    cell6.innerText = traits;
+    cell7.innerText = gold;
 
     const deleteButton = document.createElement('button');
     deleteButton.innerText = 'Xóa';
@@ -74,21 +89,7 @@ document.addEventListener('DOMContentLoaded', () => {
       updateOnlineCount();
     });
     deleteCell.appendChild(deleteButton);
-
-    const newDropdownItem = document.createElement('li');
-    newDropdownItem.innerText = username;
-    dropdownList.appendChild(newDropdownItem);
-
-    totalAccounts++;
-    totalAcc.innerText = `Total acc: ${totalAccounts}`;
-    updateOnlineCount();
-
-    document.getElementById('username').value = '';
-    document.getElementById('password').value = '';
-    document.getElementById('website').value = '';
-
-    popup.style.display = 'none';
-  });
+  }
 
   function updateOnlineCount() {
     onlineAccounts = tableBody.querySelectorAll('tr td:nth-child(3)').length;
@@ -109,7 +110,22 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  updateOnlineCount();
+  async function fetchAccountData() {
+    try {
+      const response = await fetch('https://ghj-adcheck-io.vercel.app/');
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      }
+      const data = await response.json();
+      data.forEach(account => {
+        addAccountToTable(account.Name, 'Offline', account.Level, account.Gem, account.Trait, account.Gold);
+      });
+      updateDropdownList();
+      updateOnlineCount();
+    } catch (error) {
+      console.error('Error fetching account data:', error);
+    }
+  }
+
+  fetchAccountData();
 });
-
-
