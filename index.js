@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', () => {
     console.error("Không tìm thấy phần tử với ID 'toggle-btn'");
   }
 
-  document.getElementById('account-form').addEventListener('submit', async function(event) {
+  document.getElementById('account-form').addEventListener('submit', function(event) {
     event.preventDefault();
     const username = document.getElementById('username').value;
     const password = document.getElementById('password').value;
@@ -44,70 +44,50 @@ document.addEventListener('DOMContentLoaded', () => {
     const url = `https://example.com/connect?username=${encodeURIComponent(username)}&password=${encodeURIComponent(password)}`;
     document.getElementById('website').value = url;
 
-    try {
-      const response = await fetch('https://ghj-adcheck-io.vercel.app/', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({ username, password }),
-      });
+    // Cập nhật bảng
+    const newRow = tableBody.insertRow();
+    const cell1 = newRow.insertCell(0);
+    const cell2 = newRow.insertCell(1);
+    const cell3 = newRow.insertCell(2);
+    const cell4 = newRow.insertCell(3);
+    const cell5 = newRow.insertCell(4);
+    const cell6 = newRow.insertCell(5);
+    const cell7 = newRow.insertCell(6);
+    const deleteCell = newRow.insertCell(7);
 
-      if (!response.ok) {
-        throw new Error('Network response was not ok');
-      }
+    cell1.innerText = tableBody.rows.length + 1;
+    cell2.innerText = username;
+    cell3.innerText = 'Offline';
+    cell4.innerText = '1 (0/1000)';
+    cell5.innerText = '0';
+    cell6.innerText = '0';
+    cell7.innerText = '0';
 
-      const data = await response.json();
-      console.log('Received data:', data);
-
-      // Update UI or handle response data here
-      const newRow = tableBody.insertRow();
-      const cell1 = newRow.insertCell(0);
-      const cell2 = newRow.insertCell(1);
-      const cell3 = newRow.insertCell(2);
-      const cell4 = newRow.insertCell(3);
-      const cell5 = newRow.insertCell(4);
-      const cell6 = newRow.insertCell(5);
-      const cell7 = newRow.insertCell(6);
-      const deleteCell = newRow.insertCell(7);
-
-      cell1.innerText = tableBody.rows.length + 1;
-      cell2.innerText = username;
-      cell3.innerText = 'Offline';
-      cell4.innerText = '1 (0/1000)';
-      cell5.innerText = '0';
-      cell6.innerText = '0';
-      cell7.innerText = '0';
-
-      const deleteButton = document.createElement('button');
-      deleteButton.innerText = 'Xóa';
-      deleteButton.addEventListener('click', () => {
-        const rowIndex = newRow.rowIndex - 1;
-        tableBody.deleteRow(rowIndex);
-        updateDropdownList();
-        totalAccounts--;
-        totalAcc.innerText = `Total acc: ${totalAccounts}`;
-        updateOnlineCount();
-      });
-      deleteCell.appendChild(deleteButton);
-
-      const newDropdownItem = document.createElement('li');
-      newDropdownItem.innerText = username;
-      dropdownList.appendChild(newDropdownItem);
-
-      totalAccounts++;
+    const deleteButton = document.createElement('button');
+    deleteButton.innerText = 'Xóa';
+    deleteButton.addEventListener('click', () => {
+      const rowIndex = newRow.rowIndex - 1;
+      tableBody.deleteRow(rowIndex);
+      updateDropdownList();
+      totalAccounts--;
       totalAcc.innerText = `Total acc: ${totalAccounts}`;
       updateOnlineCount();
+    });
+    deleteCell.appendChild(deleteButton);
 
-      document.getElementById('username').value = '';
-      document.getElementById('password').value = '';
-      document.getElementById('website').value = '';
+    const newDropdownItem = document.createElement('li');
+    newDropdownItem.innerText = username;
+    dropdownList.appendChild(newDropdownItem);
 
-      popup.style.display = 'none';
-    } catch (error) {
-      console.error('Error fetching account data:', error);
-      // Handle error gracefully, show a message, etc.
-    }
+    totalAccounts++;
+    totalAcc.innerText = `Total acc: ${totalAccounts}`;
+    updateOnlineCount();
+
+    document.getElementById('username').value = '';
+    document.getElementById('password').value = '';
+    document.getElementById('website').value = '';
+
+    popup.style.display = 'none';
   });
 
   function updateOnlineCount() {
@@ -129,5 +109,36 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
-  updateOnlineCount();
+  async function fetchAccountData() {
+    try {
+      const response = await fetch('http://localhost:3000/data');
+      const accountData = await response.json();
+
+      accountData.forEach((account, index) => {
+        const newRow = tableBody.insertRow();
+        const cell1 = newRow.insertCell(0);
+        const cell2 = newRow.insertCell(1);
+        const cell3 = newRow.insertCell(2);
+        const cell4 = newRow.insertCell(3);
+        const cell5 = newRow.insertCell(4);
+        const cell6 = newRow.insertCell(5);
+        const cell7 = newRow.insertCell(6);
+
+        cell1.innerText = index + 1;
+        cell2.innerText = account.Name;
+        cell3.innerText = 'Offline';
+        cell4.innerText = account.Level;
+        cell5.innerText = account.Gem;
+        cell6.innerText = account.Trait;
+        cell7.innerText = account.Gold;
+      });
+
+      updateOnlineCount();
+      updateDropdownList();
+    } catch (error) {
+      console.error('Error fetching account data:', error);
+    }
+  }
+
+  fetchAccountData();
 });
